@@ -44,10 +44,10 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="#">UTM to CSV</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="#">About</a>
@@ -59,7 +59,7 @@
                         <a href="#">Contact</a>
                     </li>
                 </ul>
-            </div>
+            </div> -->
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -68,7 +68,7 @@
     <!-- Page Content -->
     <div class="container">
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>A Bootstrap Starter Template</h1>
                 <p class="lead">Complete with pre-defined file paths that you won't have to change!</p>
@@ -77,8 +77,85 @@
                     <li>jQuery v1.11.1</li>
                 </ul>
             </div>
+        </div> -->
+        <div class="row">
+            <div class="col-lg-12">
+                <form class="form-inline" role="form">
+                  <div class="col-lg-2 form-group">
+                    <label for="url">Landing Page*</label>
+                  </div>
+                  <div class="col-lg-2 form-group">
+                    <label for="text">Campaign*</label>
+                  </div>
+                  <div class="col-lg-2 form-group">
+                    <label for="text">Medium*</label>
+                  </div>
+                  <div class="col-lg-2 form-group">
+                    <label for="text">Source*</label>
+                  </div>
+                  <div class="col-lg-2 form-group">
+                    <label for="text">Content</label>
+                  </div>
+                  <div class="col-lg-2 form-group">
+                    <label for="text">Term</label>
+                  </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <form class="form-inline" role="form">
+                  <div class="col-lg-2 form-group">
+                    <input type="url" class="form-control" id="url" placeholder="http://www.google.com">
+                  </div>
+                  <div class="col-lg-2 form-group">
+                    <input type="text" class="form-control" id="text" placeholder="Awareness Q3">
+                  </div>
+                  <div class="col-lg-2 form-group">
+                    <input type="text" class="form-control" id="text" placeholder="Display Ad">
+                  </div>
+                  <div class="col-lg-2 form-group">
+                    <input type="text" class="form-control" id="text" placeholder="Verve">
+                  </div>
+                  <div class="col-lg-2 form-group">
+                    <input type="text" class="form-control" id="text" placeholder="400x600">
+                  </div>
+                  <div class="col-lg-2 form-group">
+                    <input type="text" class="form-control" id="text" placeholder="Big Savings">
+                  </div>
+                </form>
+            </div>
+        </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="control-group" id="fields">
+                        <label class="control-label" for="field1">Form Field Adding Test</label>
+                        <div class="controls"> 
+                            <form role="form" autocomplete="off">
+                                <div class="entry input-group col-xs-3">
+                                    <input class="form-control" name="fields[]" type="text" placeholder="Type something" />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-success btn-add" type="button">
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <br>
+                <p class="unstyled">*Required Field</p>
+            </div>
         </div>
         <!-- /.row -->
+
         <div class="row">
             <div class="col-lg-12 text-center">
                 <button type="button" class="btn btn-primary">Download csv</button>
