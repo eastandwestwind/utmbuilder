@@ -289,7 +289,6 @@ if (typeof jQuery === 'undefined') {
     .on('focus.bs.button.data-api blur.bs.button.data-api', '[data-toggle^="button"]', function (e) {
       $(e.target).closest('.btn').toggleClass('focus', /^focus(in)?$/.test(e.type))
     })
-
 }(jQuery);
 
 /* ========================================================================
@@ -2362,27 +2361,4 @@ if (typeof jQuery === 'undefined') {
 
 }(jQuery);
 
-// Button add feature
-$(function()
-{
-    $(document).on('click', '.btn-add', function(e)
-    {
-        e.preventDefault();
 
-        var controlForm = $('.controls form:first'),
-            currentEntry = $(this).parents('.entry:first'),
-            newEntry = $(currentEntry.clone()).appendTo(controlForm);
-
-        newEntry.find('input').val('');
-        controlForm.find('.entry:not(:last) .btn-add')
-            .removeClass('btn-add').addClass('btn-remove')
-            .removeClass('btn-success').addClass('btn-danger')
-            .html('<span class="glyphicon glyphicon-minus"></span>');
-    }).on('click', '.btn-remove', function(e)
-    {
-    $(this).parents('.entry:first').remove();
-
-    e.preventDefault();
-    return false;
-  });
-});
