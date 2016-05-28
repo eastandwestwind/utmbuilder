@@ -78,93 +78,86 @@
                 </ul>
             </div>
         </div> -->
+            <div class="container">
 
+                    <div class="col-lg-2 control-group" id="fields">
+                        <label class="control-label" for="field0">Landing Page*</label>
+                    </div>
+                    <div class="col-lg-2 control-group" id="fields">
+                        <label class="control-label" for="field0">Campaign*</label>
+                    </div>
+                    <div class="col-lg-2 control-group" id="fields">
+                        <label class="control-label" for="field0">Medium*</label>
+                    </div>
+                    <div class="col-lg-2 control-group" id="fields">
+                        <label class="control-label" for="field0">Source*</label>
+                    </div>
+                    <div class="col-lg-2 control-group" id="fields">
+                        <label class="control-label" for="field0">Content</label>
+                    </div>
+                    <div class="col-lg-2 control-group" id="fields">
+                        <label class="control-label" for="field0">Term</label>
+                    </div>
+
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-lg-2 control-group" id="fields">
-                        <label class="control-label" for="field1">Landing Page*</label>
                         <div class="controls"> 
                             <form role="form" autocomplete="off">
                                 <div class="entry input-group">
-                                    <input class="form-control" name="fields[]" id="url" type="url" placeholder="http://www.google.com" />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-success btn-add" type="button">
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                        </button>
-                                    </span>
+                                    <input class="form-control" name="landingPage" id="url" type="url" placeholder="http://www.google.com" />
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div class="col-lg-2 control-group" id="fields">
-                        <label class="control-label" for="field2">Campaign*</label>
                         <div class="controls"> 
                             <form role="form" autocomplete="off">
                                 <div class="entry input-group">
-                                    <input class="form-control" name="fields[]" type="text" placeholder="Awareness Q3" />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-success btn-add" type="button">
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                        </button>
-                                    </span>
+                                    <input class="form-control" name="campaign" type="text" placeholder="Awareness Q3" />
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div class="col-lg-2 control-group" id="fields">
-                        <label class="control-label" for="field3">Medium*</label>
                         <div class="controls"> 
                             <form role="form" autocomplete="off">
                                 <div class="entry input-group">
-                                    <input class="form-control" name="fields[]" type="text" placeholder="Display Ad" />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-success btn-add" type="button">
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                        </button>
-                                    </span>
+                                    <input class="form-control" name="medium" type="text" placeholder="Display Ad" />
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div class="col-lg-2 control-group" id="fields">
-                        <label class="control-label" for="field4">Source*</label>
                         <div class="controls"> 
                             <form role="form" autocomplete="off">
                                 <div class="entry input-group">
-                                    <input class="form-control" name="fields[]" type="text" placeholder="Verve" />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-success btn-add" type="button">
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                        </button>
-                                    </span>
+                                    <input class="form-control" name="source" type="text" placeholder="Verve" />
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div class="col-lg-2 control-group" id="fields">
-                        <label class="control-label" for="field5">Content</label>
                         <div class="controls"> 
                             <form role="form" autocomplete="off">
                                 <div class="entry input-group">
-                                    <input class="form-control" name="fields[]" type="text" placeholder="400x600" />
-                                    <span class="input-group-btn">
-                                        <button class="btn btn-success btn-add" type="button">
-                                            <span class="glyphicon glyphicon-plus"></span>
-                                        </button>
-                                    </span>
+                                    <input class="form-control" name="content" type="text" placeholder="400x600" />
                                 </div>
                             </form>
                         </div>
                     </div>
                     <div class="col-lg-2 control-group" id="fields">
-                        <label class="control-label" for="field6">Term</label>
                         <div class="controls"> 
                             <form role="form" autocomplete="off">
                                 <div class="entry input-group">
-                                    <input class="form-control" name="fields[]" type="text" placeholder="Big Savings" />
+                                    <input class="form-control" name="term" type="text" placeholder="Big Savings" />
                                     <span class="input-group-btn">
                                         <button class="btn btn-success btn-add" type="button">
                                             <span class="glyphicon glyphicon-plus"></span>
+                                        </button>
+                                        <button class="btn btn-danger btn-remove" type="button">
+                                            <span class="glyphicon glyphicon-minus"></span>
                                         </button>
                                     </span>
                                 </div>
@@ -174,19 +167,19 @@
                 </div>
             </div>
 
-        <div class="row">
+       
             <div class="col-lg-12 text-center">
                 <br>
                 <p class="unstyled">*Required Field</p>
             </div>
-        </div>
+
         <!-- /.row -->
 
-        <div class="row">
+
             <div class="col-lg-12 text-center">
                 <button type="button" class="btn btn-primary">Download</button>
             </div>
-        </div>
+
 
     </div>
     <!-- /.container -->
