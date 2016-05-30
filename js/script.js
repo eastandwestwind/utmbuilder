@@ -23,12 +23,8 @@ $(function()
     {
         e.preventDefault();
         console.log("button logic function")
-        var controlForm = $(this).closest('.container'),
-            // controlFormNext= $(this).nextAll('.controls form:first'),
-            currentEntry = $(this).closest('.row'),
-            // currentEntryNext = $(this).nextAll('.entry:first'),
-            newEntry = $(currentEntry.clone()).appendTo(controlForm);
-            // newEntryNext = $(currentEntryNext.clone()).appendTo(controlFormNext);
+        var currentEntry = $(this).closest('.row');
+        $(currentEntry).after(currentEntry.clone());
 
         // controlForm.find('.entry:not(:last) .btn-add')
         //     .removeClass('btn-add').addClass('btn-remove')
@@ -44,6 +40,7 @@ $(function()
     })
    .on('click', '.btn-primary', function(g)
     {
+    try{
         var parameterNames = ['utm_campaign', 'utm_medium', 'utm_source', 'utm_content', 'utm_term'];
         var lines = [];
         lines.push(['Landing Page', 'Campaign', 'Medium', 'Source', 'Content', 'Term', 'URL'].join(','));
@@ -51,11 +48,14 @@ $(function()
             var row = [];
             var params = [];
             $(this).find('input').each(function(colNum){
-                if (colNum > 0) {
-                    parameterNames[colNum-1];
-                    params.push(parameterNames[colNum-1]+'='+encodeURIComponent($(this).val()));
+                var value = $(this).val().trim();
+                if (colNum < 4 && !value){
+                    throw 'required fields must be complete';
                 }
-                row.push($(this).val());
+                if (colNum > 0 && value){          
+                    params.push(parameterNames[colNum-1]+'='+encodeURIComponent(value));
+                }
+                row.push(value);
             });
             var url = row[0] + '?' + params.join('&');
             row.push(url);
@@ -64,6 +64,10 @@ $(function()
         var csv = 'data:text/csv;charset=utf-8,' + lines.join('\n');
         var encodedUri = encodeURI(csv);
         window.open(encodedUri);
+    }
+    catch(e){
+        alert(e)
+    }
     });
 });
 
