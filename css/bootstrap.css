@@ -35,11 +35,6 @@ video {
   vertical-align: baseline;
 }
 
-.entry:not(:first-of-type)
-{
-    margin-top: 10px;
-}
-
 audio:not([controls]) {
   display: none;
   height: 0;
@@ -6765,4 +6760,11 @@ button.close {
     display: none !important;
   }
 }
+
+.row:not(:first-of-type)
+{
+    margin-top: 10px;
+}
+
+
 /*# sourceMappingURL=bootstrap.css.map */

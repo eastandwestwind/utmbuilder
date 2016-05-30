@@ -25,11 +25,6 @@ $(function()
         console.log("button logic function")
         var currentEntry = $(this).closest('.row');
         $(currentEntry).after(currentEntry.clone());
-
-        // controlForm.find('.entry:not(:last) .btn-add')
-        //     .removeClass('btn-add').addClass('btn-remove')
-        //     .removeClass('btn-success').addClass('btn-danger')
-        //     .html('<span class="glyphicon glyphicon-minus"></span>');
     })
     .on('click', '.btn-remove', function(e)
     {
