@@ -36,9 +36,9 @@ $(function()
    .on('click', '.btn-primary', function(g)
     {
     try{
-        var parameterNames = ['utm_campaign', 'utm_medium', 'utm_source', 'utm_content', 'utm_term'];
+        var parameterNames = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
         var lines = [];
-        lines.push(['Landing Page', 'Campaign', 'Medium', 'Source', 'Content', 'Term', 'URL'].join(','));
+        lines.push(['Landing Page', 'Source', 'Medium', 'Campaign', 'Term', 'Content', 'UTM'].join(','));
         $('.row').each(function(){
             var row = [];
             var params = [];
