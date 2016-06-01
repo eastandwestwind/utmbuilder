@@ -16,6 +16,8 @@ if (typeof jQuery === 'undefined') {
 // window.open(encodedUri);
 
 // button add logic
+$("a.my-tool-tip").tooltip();
+
 $(function()
 { 
     $(document)
@@ -36,15 +38,15 @@ $(function()
    .on('click', '.btn-primary', function(g)
     {
     try{
-        var parameterNames = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+        var parameterNames = ['utm_source', 'utm_medium', 'utm_content', 'utm_term', 'utm_campaign'];
         var lines = [];
-        lines.push(['Landing Page', 'Source', 'Medium', 'Campaign', 'Term', 'Content', 'UTM'].join(','));
+        lines.push(['Landing Page', 'Source', 'Medium', 'Content', 'Term', 'Campaign', 'UTM'].join(','));
         $('.row').each(function(){
             var row = [];
             var params = [];
             $(this).find('input').each(function(colNum){
                 var value = $(this).val().trim();
-                if (colNum < 4 && !value){
+                if (colNum != 4 && !value){
                     throw 'required fields must be complete';
                 }
                 if (colNum > 0 && value){          

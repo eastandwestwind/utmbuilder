@@ -68,7 +68,7 @@
     <!-- Page Content -->
     <div class="container-fluid">
 
-        <!-- <div class="row">
+<!--         <div class="row">
             <div class="col-lg-12 text-center">
                 <h1>A Bootstrap Starter Template</h1>
                 <p class="lead">Complete with pre-defined file paths that you won't have to change!</p>
@@ -81,24 +81,42 @@
             <div class="container">
 
                     <div class="col-lg-2 control-group" id="fields">
-                        <label class="control-label" for="field0">Landing Page*</label>
+                        <label class="control-label" for="field0">Landing Page</label>
+                        <a class='my-tool-tip' data-toggle="tooltip" data-placement="right" title="URL of campaign landing page (eg. http://foxylabs.io)">
+                            <i class='glyphicon glyphicon-info-sign'></i>
+                        </a>
                     </div>
                      <div class="col-lg-2 control-group" id="fields">
-                        <label class="control-label" for="field0">Source*</label>
+                        <label class="control-label" for="field0">Source</label>
+                        <a class='my-tool-tip' data-toggle="tooltip" data-placement="right" title="Identify specific source, such as advertiser or search engine. (eg. Boston Globe, Pinterest, March Newsletter)">
+                            <i class='glyphicon glyphicon-info-sign'></i>
+                        </a>
                     </div>
                     <div class="col-lg-2 control-group" id="fields">
-                        <label class="control-label" for="field0">Medium*</label>
-                    </div>
-                    <div class="col-lg-2 control-group" id="fields">
-                        <label class="control-label" for="field0">Campaign*</label>
-                    </div>
-                    <div class="col-lg-2 control-group" id="fields">
-                        <label class="control-label" for="field0">Term</label>
+                        <label class="control-label" for="field0">Medium</label>
+                        <a class='my-tool-tip' data-toggle="tooltip" data-placement="right" title="Identify medium the url will be delivered in. (eg. email, cpc, display)">
+                            <i class='glyphicon glyphicon-info-sign'></i>
+                        </a>
                     </div>
                     <div class="col-lg-2 control-group" id="fields">
                         <label class="control-label" for="field0">Content</label>
+                        <a class='my-tool-tip' data-toggle="tooltip" data-placement="right" title="Distinguish between ads with content, creative, or size (eg. textonly, rain, 160x600)">
+                            <i class='glyphicon glyphicon-info-sign'></i>
+                        </a>
                     </div>
-                    
+                    <div class="col-lg-2 control-group" id="fields">
+                        <label class="control-label" for="field0">Term (optional)</label>
+                        <a class='my-tool-tip' data-toggle="tooltip" data-placement="left" title="Identify keywords for ad. Typically used for paid search. (eg. Swimsuits, Laptop)">
+                            <i class='glyphicon glyphicon-info-sign'></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-2 control-group" id="fields">
+                        <label class="control-label" for="field0">Campaign</label>
+                        <a class='my-tool-tip' data-toggle="tooltip" data-placement="left" title="Name of the campaign. (eg. Summer Sale, Q3 Lead Gen)">
+                            <i class='glyphicon glyphicon-info-sign'></i>
+                        </a>
+                    </div>
+                                        
 
             </div>
             <div class="container">
@@ -134,7 +152,7 @@
                         <div class="controls"> 
                             <form role="form" autocomplete="off">
                                 <div class="entry input-group">
-                                    <input class="form-control" name="campaign" type="text" placeholder="Awareness Q3" />
+                                    <input class="form-control" name="content" type="text" placeholder="400x600" />
                                 </div>
                             </form>
                         </div>
@@ -152,7 +170,7 @@
                         <div class="controls"> 
                             <form role="form" autocomplete="off">
                                 <div class="entry input-group">
-                                    <input class="form-control" name="content" type="text" placeholder="400x600" />
+                                    <input class="form-control" name="campaign" type="text" placeholder="Awareness Q3" />
                                     <span class="input-group-btn">
                                         <button class="btn btn-success btn-add" type="button">
                                             <span class="glyphicon glyphicon-plus"></span>
@@ -169,10 +187,10 @@
             </div>
 
        
-            <div class="col-lg-12 text-center">
+<!--             <div class="col-lg-12 text-center">
                 <br>
                 <p class="unstyled">*Required Field</p>
-            </div>
+            </div> -->
 
         <!-- /.row -->
 
@@ -180,6 +198,17 @@
             <div class="col-lg-12 text-center">
                 <button type="button" class="btn btn-primary">Download</button>
             </div>
+
+            <!-- <div class="col-lg-12 text-left">
+                <br>
+                <p class="h4">Parameters</p>
+                <p class="text-muted"><b>Landing Page:</b> URL of campaign landing page (eg. http://foxylabs.io)</p>
+                <p class="text-muted"><b>Source:</b> Identify specific source, such as advertiser or search engine. (eg. Boston Globe, Pinterest, March Newsletter)</p>
+                <p class="text-muted"><b>Medium:</b> Identify medium the url will be delivered in. (eg. email, cpc, display)</p>
+                <p class="text-muted"><b>Content:</b> Distinguish between ads with content, creative, or size (eg. textonly, rainbow, 160x600)</p>
+                <p class="text-muted"><b>Term:</b> Identify keywords for ad. Typically used for paid search. (eg. Swimsuits, Laptop)</p>
+                <p class="text-muted"><b>Campaign:</b> Name of the campaign. (eg. Summer Sale, Q3 Lead Gen)</p>
+            </div> -->
 
 
     </div>
