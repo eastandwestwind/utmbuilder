@@ -62,7 +62,7 @@ $(function()
         var link = document.createElement('a');
         var fileNameInput = $("#filename")
         link.download = fileNameInput.val() || fileNameInput.attr("placeholder");
-        link.href = csv;
+        link.href = encodeURI(csv);
         link.click();
         // var encodedUri = encodeURI(csv);
         // window.open(encodedUri);
