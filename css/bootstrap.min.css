@@ -8041,6 +8041,9 @@ button.close {
     }
 }
 
-
+.input-name {
+  margin-top: 50px;
+  float: center
+}
 
 /*# sourceMappingURL=bootstrap.min.css.map */

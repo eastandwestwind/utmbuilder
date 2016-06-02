@@ -59,8 +59,13 @@ $(function()
             lines.push(row.join(','));
         });
         var csv = 'data:text/csv;charset=utf-8,' + lines.join('\n');
-        var encodedUri = encodeURI(csv);
-        window.open(encodedUri);
+        var link = document.createElement('a');
+        var fileNameInput = $("#filename")
+        link.download = fileNameInput.val() || fileNameInput.attr("placeholder");
+        link.href = csv;
+        link.click();
+        // var encodedUri = encodeURI(csv);
+        // window.open(encodedUri);
     }
     catch(e){
         alert(e)
