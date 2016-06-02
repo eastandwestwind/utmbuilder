@@ -18,6 +18,16 @@ if (typeof jQuery === 'undefined') {
 // button add logic
 $("a.my-tool-tip").tooltip();
 
+var downloadData = function(type, data, filename) {
+	var link = document.createElement('a');
+	link.download = filename;
+	link.href = encodeURI('data:' + type + ',' + data);
+	link.style.display = 'none';
+	document.getElementsByTagName('body')[0].appendChild(link);
+	link.click();
+	document.getElementsByTagName('body')[0].removeChild(link);
+}
+
 $(function()
 { 
     $(document)
@@ -58,14 +68,10 @@ $(function()
             row.push(url);
             lines.push(row.join(','));
         });
-        var csv = 'data:text/csv;charset=utf-8,' + lines.join('\n');
-        var link = document.createElement('a');
-        var fileNameInput = $("#filename")
-        link.download = fileNameInput.val() || fileNameInput.attr("placeholder");
-        link.href = encodeURI(csv);
-        link.click();
-        // var encodedUri = encodeURI(csv);
-        // window.open(encodedUri);
+        var csv = lines.join('\n');
+		var fileNameInput = $("#filename");
+        var filename = fileNameInput.val() || fileNameInput.attr("placeholder");
+		downloadData('text/csv;charset=utf-8', csv, filename);
     }
     catch(e){
         alert(e)
