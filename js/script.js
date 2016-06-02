@@ -70,7 +70,7 @@ $(function()
         });
         var csv = lines.join('\n');
 		var fileNameInput = $("#filename");
-        var filename = fileNameInput.val() || fileNameInput.attr("placeholder");
+        var filename = (fileNameInput.val() || fileNameInput.attr("placeholder")) + ".csv";
 		downloadData('text/csv;charset=utf-8', csv, filename);
     }
     catch(e){
