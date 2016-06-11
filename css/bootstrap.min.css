@@ -50,7 +50,8 @@ template {
 }
 
 a {
-    background-color: transparent
+    background-color: transparent;
+    color: black
 }
 
 a:active,
@@ -6569,6 +6570,9 @@ button.list-group-item-danger.active:hover {
 }
 
 .panel-footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
     padding: 10px 15px;
     background-color: #f5f5f5;
     border-top: 1px solid #ddd;
