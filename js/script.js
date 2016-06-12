@@ -77,6 +77,14 @@ var downloadData = function (type, data, filename) {
 $(function()
 { 
     $(document)
+//    .on('click', '#radio', function(){
+//        var radioVal = $(this).attr('checked');
+//        if (radioVal !== undefined) {
+//            $(this).attr('checked',false)
+//            }else{
+//            $(this).attr('checked',true)
+//            }
+//    })
     .on('click', '.btn-add', function (e)
     {
         e.preventDefault();
@@ -107,6 +115,10 @@ $(function()
             var params = [];
             $(this).find('input').each(function(colNum){
                 var value = $(this).val().trim();
+                var radioVal = $('#radio').prop('checked');
+                if (radioVal){   
+                    value = value.replace(" ", "_");
+                }
                 if (colNum != 4 && !value){
                     throw 'required fields must be complete';
                 }
@@ -126,7 +138,6 @@ $(function()
         var fileNameInput = $("#filename");
         if (format == ".xlsx"){
             var wb = new Workbook(), ws = sheet_from_array_of_arrays(lines);
-//            xlsx already has a placeholder filename
             var filename = (fileNameInput.val() || fileNameInput.attr("placeholder"));
             wb.SheetNames.push(filename);
             wb.Sheets[filename] = ws;
