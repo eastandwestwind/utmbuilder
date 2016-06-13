@@ -89,10 +89,7 @@ $(function()
         var nLines = $('.entryLines').length;
         if (nLines > 1){
 		  $(this).closest('.entryLines').remove();
-        }else{
-            
         }
-
 		e.preventDefault();
 		return false;
     })
@@ -113,8 +110,13 @@ $(function()
             $(this).find('input').each(function(colNum){
                 var value = $(this).val().trim();
                 var radioVal = $('#radio').prop('checked');
+                var indexQ = value.indexOf("\"");
+                var indexC = value.indexOf(",");
                 if (radioVal){   
                     value = value.replace(" ", "_");
+                }
+                if (indexQ != -1 || indexC != -1){
+                    throw 'fields cannot contain quotes or commas';
                 }
                 if (colNum != 4 && !value){
                     throw 'required fields must be complete';
