@@ -86,7 +86,12 @@ $(function()
     })
     .on('click', '.btn-remove', function(e)
     {
-		$(this).closest('.entryLines').remove();
+        var nLines = $('.entryLines').length;
+        if (nLines > 1){
+		  $(this).closest('.entryLines').remove();
+        }else{
+            
+        }
 
 		e.preventDefault();
 		return false;
