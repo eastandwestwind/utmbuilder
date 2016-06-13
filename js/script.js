@@ -77,24 +77,16 @@ var downloadData = function (type, data, filename) {
 $(function()
 { 
     $(document)
-//    .on('click', '#radio', function(){
-//        var radioVal = $(this).attr('checked');
-//        if (radioVal !== undefined) {
-//            $(this).attr('checked',false)
-//            }else{
-//            $(this).attr('checked',true)
-//            }
-//    })
     .on('click', '.btn-add', function (e)
     {
         e.preventDefault();
         console.log("button logic function")
-        var currentEntry = $(this).closest('.row');
+        var currentEntry = $(this).closest('.entryLines');
         $(currentEntry).after(currentEntry.clone());
     })
     .on('click', '.btn-remove', function(e)
     {
-		$(this).closest('.row').remove();
+		$(this).closest('.entryLines').remove();
 
 		e.preventDefault();
 		return false;
@@ -110,7 +102,7 @@ $(function()
         }else{
             lines.push(['Landing Page', 'Source', 'Medium', 'Content', 'Term', 'Campaign', 'UTM'].join(','));
         }
-        $('.row').each(function(){
+        $('.entryLines').each(function(){
             var row = [];
             var params = [];
             $(this).find('input').each(function(colNum){
