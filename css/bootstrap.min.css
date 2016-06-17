@@ -2007,7 +2007,7 @@ pre code {
 .container-fluid {
     padding-bottom: 50px;
     padding-right: 15px;
-    padding-left: 15px;
+    padding-left: 50px;
     margin-right: auto;
     margin-left: auto
 }
@@ -5124,7 +5124,7 @@ textarea.input-group-sm>.input-group-btn>.btn {
 
 .navbar-fixed-bottom,
 .navbar-fixed-top {
-    position: fixed;
+    position: absolute;
     right: 0;
     left: 0;
     z-index: 1030
@@ -6572,6 +6572,7 @@ button.list-group-item-danger.active:hover {
 
 .panel-footer {
     position: fixed;
+    z-index: 2;
     bottom: 0px;
     width: 100%;
     padding: 10px 15px;
@@ -8050,5 +8051,14 @@ button.close {
   margin-top: 50px;
   float: center
 }
+
+.row-num {
+  position: absolute;
+  z-index: 2;
+  float: left;
+  vertical-align: middle;
+  margin-top: 7px;
+}
+
 
 /*# sourceMappingURL=bootstrap.min.css.map */

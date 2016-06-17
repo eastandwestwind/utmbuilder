@@ -32,7 +32,7 @@ function sheet_from_array_of_arrays(data, opts) {
 			var cell = {v: data[R][C] };
 			if(cell.v == null) continue;
 			var cell_ref = XLSX.utils.encode_cell({c:C,r:R});
-			
+
 			if(typeof cell.v === 'number') cell.t = 'n';
 			else if(typeof cell.v === 'boolean') cell.t = 'b';
 			else if(cell.v instanceof Date) {
@@ -40,7 +40,7 @@ function sheet_from_array_of_arrays(data, opts) {
 				cell.v = datenum(cell.v);
 			}
 			else cell.t = 's';
-			
+
 			ws[cell_ref] = cell;
 		}
 	}
@@ -75,7 +75,7 @@ var downloadData = function (type, data, filename) {
 
 //on download click
 $(function()
-{ 
+{
     $(document)
     .on('click', '.btn-add', function (e)
     {
@@ -83,6 +83,8 @@ $(function()
         console.log("button logic function")
         var currentEntry = $(this).closest('.entryLines');
         $(currentEntry).after(currentEntry.clone());
+        console.log($(currentEntry).index()+1);
+
     })
     .on('click', '.btn-remove', function(e)
     {
@@ -112,7 +114,7 @@ $(function()
                 var radioVal = $('#radio').prop('checked');
                 var indexQ = value.indexOf("\"");
                 var indexC = value.indexOf(",");
-                if (radioVal){   
+                if (radioVal){
                     value = value.replace(" ", "_");
                 }
                 if (indexQ != -1 || indexC != -1){
@@ -121,7 +123,7 @@ $(function()
                 if (colNum != 4 && !value){
                     throw 'required fields must be complete';
                 }
-                if (colNum > 0 && value){          
+                if (colNum > 0 && value){
                     params.push(parameterNames[colNum-1]+'='+encodeURIComponent(value));
                 }
                 row.push(value);
@@ -153,4 +155,3 @@ $(function()
     }
     });
 });
-
