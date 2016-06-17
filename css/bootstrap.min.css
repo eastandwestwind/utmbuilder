@@ -2005,6 +2005,7 @@ pre code {
 }
 
 .container-fluid {
+    padding-bottom: 50px;
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
