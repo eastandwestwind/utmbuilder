@@ -8052,12 +8052,21 @@ button.close {
   float: center
 }
 
+.entryLines {
+  counter-increment: row;
+}
 .row-num {
   position: absolute;
   z-index: 2;
   float: left;
   vertical-align: middle;
   margin-top: 7px;
+}
+.row-num::before {
+  content: counter(row);
+}
+.row-num + div {
+  margin-left: 22px;
 }
 
 
