@@ -71,7 +71,19 @@ var downloadData = function (type, data, filename) {
 	document.getElementsByTagName('body')[0].appendChild(link);
 	link.click();
 	document.getElementsByTagName('body')[0].removeChild(link);
-}
+};
+
+var getRawInputRows = function() {
+	var rawInputRows = [];
+	$('.entryLines').each(function(){
+		var row = [];
+		$(this).find('input').each(function(colNum){
+			row.push($(this).val().trim());
+		});
+		rawInputRows.push(row);
+	});
+	return rawInputRows;
+};
 
 //on download click
 $(function()
@@ -100,17 +112,18 @@ $(function()
     try{
         var format = $('.selectpicker').find(":selected").text();
         var parameterNames = ['utm_source', 'utm_medium', 'utm_content', 'utm_term', 'utm_campaign'];
+        var rawInputRows = getRawInputRows();
         var lines = [];
         if (format == ".xlsx"){
             lines.push(['Landing Page', 'Source', 'Medium', 'Content', 'Term', 'Campaign', 'UTM']);
         }else{
             lines.push(['Landing Page', 'Source', 'Medium', 'Content', 'Term', 'Campaign', 'UTM'].join(','));
         }
-        $('.entryLines').each(function(){
+        $(rawInputRows).each(function(){
             var row = [];
             var params = [];
-            $(this).find('input').each(function(colNum){
-                var value = $(this).val().trim();
+            $(this).each(function(colNum){
+                var value = this;
                 var radioVal = $('#radio').prop('checked');
                 var indexQ = value.indexOf("\"");
                 var indexC = value.indexOf(",");
@@ -153,5 +166,22 @@ $(function()
     catch(e){
         alert(e)
     }
-    });
+    })
+    .on('change', 'input', function(){
+		$('#savedInput').val(JSON.stringify(getRawInputRows()));
+	});
+	var savedInput = $('#savedInput').val();
+	if (savedInput) {
+		savedInput = JSON.parse(savedInput);
+		$(savedInput).each(function(){
+			var lastLine = $('.entryLines').last();
+			var newLine = lastLine.clone();
+			$(lastLine).after(newLine);
+			var fields = newLine.find('input');
+			$(this).each(function(i){
+				$(fields.get(i)).val(this);
+			});
+		});
+		var lastLine = $('.entryLines').first().remove();
+	}
 });
