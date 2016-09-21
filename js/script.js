@@ -85,6 +85,16 @@ var getRawInputRows = function() {
 	return rawInputRows;
 };
 
+// escape utility
+function escapeRegExp(str) {
+    return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+}
+
+// to replace underscores
+function replaceAll(str, find, replace) {
+  return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
+}
+
 //on download click
 $(function()
 {
@@ -128,7 +138,8 @@ $(function()
                 var indexQ = value.indexOf("\"");
                 var indexC = value.indexOf(",");
                 if (radioVal){
-                    value = value.replace(" ", "_");
+                    // value = value.replace(" ", "_");
+                    value = replaceAll(value," ","_");
                 }
                 if (indexQ != -1 || indexC != -1){
                     throw 'fields cannot contain quotes or commas';
