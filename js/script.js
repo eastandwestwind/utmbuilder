@@ -3,6 +3,130 @@ if (typeof jQuery === 'undefined') {
   throw new Error('Bootstrap\'s JavaScript requires jQuery')
 }
 
+/**
+ * FirebaseUI initialization to be used in a Single Page application context.
+ */
+// FirebaseUI config.
+var uiConfig = {
+    'callbacks': {
+        // Called when the user has been successfully signed in.
+        'signInSuccess': function(user, credential, redirectUrl) {
+            handleSignedInUser(user);
+            // Do not redirect.
+            return false;
+        }
+    },
+    // Opens IDP Providers sign-in flow in a popup.
+    'signInFlow': 'popup',
+    'signInOptions': [
+        {
+            provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            scopes: ['https://www.googleapis.com/auth/plus.login']
+        },
+    ],
+    // Terms of service url.
+    'tosUrl': 'https://www.google.com'
+};
+
+// Initialize the FirebaseUI Widget using Firebase.
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+// Keep track of the currently signed in user.
+var currentUid = null;
+
+
+/**
+ * Displays the UI for a signed in user.
+ */
+var handleSignedInUser = function(user) {
+    $('#save').prop("disabled",false);
+    currentUid = user.uid;
+    $('#SelectData').show();
+    document.getElementById('user-signed-in').style.display = 'block';
+    document.getElementById('user-signed-out').style.display = 'none';
+    document.getElementById('name').textContent = user.displayName;
+    document.getElementById('email').textContent = user.email;
+    updateDropdown(currentUid);
+    if (user.photoURL){
+        document.getElementById('photo').src = user.photoURL;
+        document.getElementById('photo').style.display = 'block';
+    } else {
+        document.getElementById('photo').style.display = 'none';
+    }
+};
+
+
+/**
+ * Displays the UI for a signed out user.
+ */
+var handleSignedOutUser = function() {
+    $('#save').prop("disabled",true);
+    $('#SelectData').hide();
+    $('#delete').hide();
+    document.getElementById('user-signed-in').style.display = 'none';
+    document.getElementById('user-signed-out').style.display = 'block';
+    ui.start('#firebaseui-auth-container', uiConfig);
+    currentUid = null;
+};
+
+// Listen to change in auth state so it displays the correct UI for when
+// the user is signed in or not.
+firebase.auth().onAuthStateChanged(function(user) {
+    // The observer is also triggered when the user's token has expired and is
+    // automatically refreshed. In that case, the user hasn't changed so we should
+    // not update the UI.
+    if (user && user.uid == currentUid) {
+        return;
+    }
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('loaded').style.display = 'block';
+    user ? handleSignedInUser(user) : handleSignedOutUser();
+});
+
+// display saved data in dropdown every time new data is saved or new user logged in
+var updateDropdown = function(userId, filename){
+    var selectData = $('#SelectData');
+    selectData.children().remove();
+    if (!filename){
+        $('#delete').hide();
+        var opt = $('<option>');
+        opt.text('select data...');
+        opt.val('');
+        selectData.append(opt);
+    }
+    else {
+        $('#delete').show();
+    }
+    return firebase.database().ref('utm-set/' + userId).once('value').then(function(snapshotList) {
+        snapshotList.forEach(function(usr){
+            var opt = $('<option>');
+            opt.text(usr.key);
+            opt.val(usr.key);
+            if (usr.key == filename) {
+                opt.prop('selected', true);
+            }
+            selectData.append(opt);
+        })
+    });
+
+}
+/**
+ * Initializes the app.
+ */
+var initApp = function() {
+    document.getElementById('sign-out').addEventListener('click', function() {
+        firebase.auth().signOut();
+    });
+    document.getElementById('delete-account').addEventListener(
+        'click', function() {
+            firebase.auth().currentUser.delete();
+        });
+};
+
+
+
+window.addEventListener('load', initApp);
+
+
 // appending input to array
 // var lineArray = [];
 // data.forEach(function (infoArray, index) {
@@ -95,7 +219,19 @@ function replaceAll(str, find, replace) {
   return str.replace(new RegExp(escapeRegExp(find), 'g'), replace);
 }
 
-//on download click
+function restoreRows(savedInput) {
+    $('.entryLines').not(':first-child').remove();
+    $(savedInput).each(function () {
+        var lastLine = $('.entryLines').last();
+        var newLine = lastLine.clone();
+        $(lastLine).after(newLine);
+        var fields = newLine.find('input');
+        $(this).each(function (i) {
+            $(fields.get(i)).val(this);
+        });
+    });
+    $('.entryLines').first().remove();
+}
 $(function()
 {
     $(document)
@@ -117,7 +253,8 @@ $(function()
 		e.preventDefault();
 		return false;
     })
-   .on('click', '.btn-primary', function(g)
+
+   .on('click', '#download', function(g)
     {
     try{
         var format = $('.selectpicker').find(":selected").text();
@@ -138,7 +275,6 @@ $(function()
                 var indexQ = value.indexOf("\"");
                 var indexC = value.indexOf(",");
                 if (radioVal){
-                    // value = value.replace(" ", "_");
                     value = replaceAll(value," ","_");
                 }
                 if (indexQ != -1 || indexC != -1){
@@ -178,21 +314,42 @@ $(function()
         alert(e)
     }
     })
+
+    .on('click', '#save', function(s){
+        if (!currentUid){
+            alert("You must be logged in to save files");
+            throw new Error ("You must be logged in to save files");
+        }
+        else{
+            var fileNameInput = $("#filename");
+            var filename = (fileNameInput.val() || fileNameInput.attr("placeholder"));
+            var newDataRef = firebase.database().ref('utm-set/' + currentUid + '/' + filename);
+            newDataRef.set({rows: getRawInputRows(),filename:filename});
+            updateDropdown(currentUid, filename);
+        }
+
+    })
+    .on('change', '#SelectData', function(){
+        var dataVal = $(this).val();
+        firebase.database().ref('utm-set/' + currentUid + '/' + dataVal).once('value').then(function(snapshotList) {
+            // snapshotList.forEach(function(usr){
+                restoreRows(snapshotList.val().rows);
+                $('#filename').val(snapshotList.val().filename);
+            // })
+        });
+        updateDropdown(currentUid,dataVal);
+    })
+    .on('click', '#delete', function(){
+        var dataVal = $('#SelectData').val();
+        firebase.database().ref('utm-set/' + currentUid + '/' + dataVal).remove();
+        updateDropdown(currentUid);
+    })
     .on('change', 'input', function(){
 		$('#savedInput').val(JSON.stringify(getRawInputRows()));
 	});
 	var savedInput = $('#savedInput').val();
 	if (savedInput) {
 		savedInput = JSON.parse(savedInput);
-		$(savedInput).each(function(){
-			var lastLine = $('.entryLines').last();
-			var newLine = lastLine.clone();
-			$(lastLine).after(newLine);
-			var fields = newLine.find('input');
-			$(this).each(function(i){
-				$(fields.get(i)).val(this);
-			});
-		});
-		var lastLine = $('.entryLines').first().remove();
+        restoreRows(savedInput);
 	}
 });

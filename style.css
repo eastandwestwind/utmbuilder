@@ -1,0 +1,73 @@
+body {
+    padding-top: 100px;
+    /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.clearfix {
+    clear: both;
+}
+
+.hidden {
+    display: none;
+}
+
+#user-info {
+    border: 1px solid #CCC;
+    clear: both;
+    margin: 0 auto;
+    max-width: 400px;
+    width: 300px;
+    padding: 10px;
+    text-align: left;
+}
+
+#user-signed-in {
+    float: right;
+    height: 100px;
+}
+
+#user-signed-out{
+    float: right;
+}
+
+#sign-out,#delete-account {
+    margin-top: 5px;
+}
+
+#sign-in {
+    margin-bottom: 0px;
+}
+
+#photo-container {
+    background-color: #EEE;
+    border: 1px solid #CCC;
+    float: left;
+    height: 40px;
+    margin-right: 10px;
+    width: 40px;
+}
+
+#photo {
+    height: 40px;
+    margin: 0;
+    width: 40px;
+}
+
+@media (max-width: 300px) {
+    #photo-container,
+    #photo {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+.btn-secondary {
+    margin-top: 20px;
+    background-color: transparent;
+    border-color: deepskyblue;
+}
+
+.btn-secondary:hover {
+    color: white;
+    background-color: deepskyblue;
+}

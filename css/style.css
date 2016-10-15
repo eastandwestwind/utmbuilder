@@ -1,0 +1,110 @@
+body {
+}
+
+.navbar {
+    height: 90px;
+}
+
+.btn{
+    padding: 2px 6px;
+}
+
+.row-num {
+    margin-top: 5px;
+}
+
+.clearfix {
+    clear: both;
+}
+
+.hidden {
+    display: none;
+}
+
+.input-field {
+    width: 95%;
+}
+
+.control-group {
+    float: left;
+    width: 220px;
+}
+
+#user-info {
+    border: 1px solid #CCC;
+    clear: both;
+    margin: 0 auto;
+    max-width: 400px;
+    width: 300px;
+    padding: 5px;
+    text-align: left;
+}
+
+#user-signed-in {
+    float: right;
+    height: 100px;
+}
+
+#user-signed-out{
+    float: right;
+}
+
+#sign-out,#delete-account {
+    margin-top: 5px;
+}
+
+#sign-in {
+    margin-bottom: 0px;
+}
+
+#photo-container {
+    background-color: #EEE;
+    border: 1px solid #CCC;
+    float: left;
+    height: 40px;
+    margin-right: 10px;
+    width: 40px;
+}
+
+#photo {
+    height: 40px;
+    margin: 0;
+    width: 40px;
+}
+
+@media (max-width: 300px) {
+    #photo-container,
+    #photo {
+        height: 40px;
+        width: 40px;
+    }
+}
+
+#save {
+    margin-top: 20px;
+    background-color: transparent;
+    border-color: deepskyblue;
+    position: relative;
+}
+
+#save:hover {
+    color: white;
+    background-color: deepskyblue;
+}
+
+#save:disabled {
+    color: white;
+    border-color: darkgrey;
+    background-color: darkgrey!important;
+}
+#save:disabled:hover::after {
+    content: 'dude / dudettes, log in to save stuff!';
+    color: black;
+    background-color: white;
+    padding: 2px;
+    border: 1px solid grey;
+    border-radius: 2px;
+    position: absolute;
+    top: 15%;
+    left: 110%;
+}

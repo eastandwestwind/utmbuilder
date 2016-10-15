@@ -10,17 +10,53 @@
     <meta name="description" content="Use this tool to create UTM codes from parameters such as landing page, source, and campaign. Allows for easy duplication of lines. Download as csv or xlsx.">
     <meta name="author" content="">
 
+    <!-- Firebase scripts -->
+    <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-storage.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyBy2SxqwsIk5HhasETEkbanAjWCoU8ROvY",
+            authDomain: "utm-builder.firebaseapp.com",
+            databaseURL: "https://utm-builder.firebaseio.com",
+            storageBucket: "utm-builder.appspot.com",
+            messagingSenderId: "69158148606"
+        };
+        firebase.initializeApp(config);
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.5/firebase-ui-auth.css" />
+
+    <!--<script type="text/javascript">-->
+        <!--// FirebaseUI config.-->
+        <!--var uiConfig = {-->
+            <!--'signInSuccessUrl': '/',-->
+            <!--'signInOptions': [-->
+                <!--// Leave the lines as is for the providers you want to offer your users.-->
+                <!--firebase.auth.GoogleAuthProvider.PROVIDER_ID,-->
+            <!--],-->
+            <!--// Terms of service url.-->
+            <!--'tosUrl': '<your-tos-url>',-->
+        <!--};-->
+
+        <!--// Initialize the FirebaseUI Widget using Firebase.-->
+        <!--var ui = new firebaseui.auth.AuthUI(firebase.auth());-->
+        <!--// The start method will wait until the DOM is loaded.-->
+        <!--ui.start('#firebaseui-auth-container', uiConfig);-->
+    <!--</script>-->
 
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
+    <link href="css/style.css" rel="stylesheet">
     <style>
-    body {
-        padding-top: 70px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
+
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -44,7 +80,7 @@
 <body>
 	<input type="hidden" id="savedInput" />
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-default" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -55,7 +91,40 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#">Bulk UTM Builder</a>
+                <div>
+                    <select name="select data" id="SelectData">
+                    </select>
+                    <button class=btn" id="delete">delete</button>
+                </div>
             </div>
+
+            <div id="loading">Loading...</div>
+            <div id="loaded">
+                <div id="main">
+                    <div id="user-signed-in">
+                        <div id="user-info">
+                            <div id="photo-container">
+                                <img id="photo"></img>
+                            </div>
+                            <div id="name"></div>
+                            <div id="email"></div>
+                            <div class="clearfix"></div>
+                            <span>
+                            <button id="sign-out">Sign Out</button>
+                            <button id="delete-account">Delete account</button>
+                            </span>
+                        </div>
+
+                    </div>
+                    <div id="user-signed-out">
+                        <div id="firebaseui-spa">
+                            <h5 id="sign-in">Sign in to save your UTM docs:</h5>
+                            <div id="firebaseui-auth-container"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Collect the nav links, forms, and other content for toggling -->
             <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -90,37 +159,37 @@
         </div> -->
             <div class="row">
 
-                    <div class="col-lg-2 control-group" id="fields">
+                    <div class="control-group">
                         <label class="control-label" for="field0">Landing Page</label>
                         <a class='my-tool-tip' data-toggle="tooltip" data-placement="right" title="URL of campaign landing page">
                             <i class='glyphicon glyphicon-question-sign'></i>
                         </a>
                     </div>
-                     <div class="col-lg-2 control-group" id="fields">
+                     <div class="control-group">
                         <label class="control-label" for="field0">Source</label>
                         <a class='my-tool-tip' data-toggle="tooltip" data-placement="right" title="Vendor name or email title">
                             <i class='glyphicon glyphicon-question-sign'></i>
                         </a>
                     </div>
-                    <div class="col-lg-2 control-group" id="fields">
+                    <div class="control-group">
                         <label class="control-label" for="field0">Medium</label>
                         <a class='my-tool-tip' data-toggle="tooltip" data-placement="right" title="Channel type (eg. Email, Display, Pre-roll, In-feed)">
                             <i class='glyphicon glyphicon-question-sign'></i>
                         </a>
                     </div>
-                    <div class="col-lg-2 control-group" id="fields">
+                    <div class="control-group">
                         <label class="control-label" for="field0">Content</label>
                         <a class='my-tool-tip' data-toggle="tooltip" data-placement="right" title="Device, Creative, Placement / tactic, Size, and/or rich media">
                             <i class='glyphicon glyphicon-question-sign'></i>
                         </a>
                     </div>
-                    <div class="col-lg-2 control-group" id="fields">
+                    <div class="control-group">
                         <label class="control-label" for="field0">Term (optional)</label>
                         <a class='my-tool-tip' data-toggle="tooltip" data-placement="left" title="Keywords- typically used for paid search.">
                             <i class='glyphicon glyphicon-question-sign'></i>
                         </a>
                     </div>
-                    <div class="col-lg-2 control-group" id="fields">
+                    <div class="control-group">
                         <label class="control-label" for="field0">Campaign</label>
                         <a class='my-tool-tip' data-toggle="tooltip" data-placement="left" title="Campaign name, phase and/or year">
                             <i class='glyphicon glyphicon-question-sign'></i>
@@ -131,57 +200,57 @@
             </div>
             <div>
                 <div class="row entryLines">
-                    <div class="col-lg-2 control-group" id="fields">
+                    <div class="control-group">
 					  <span class="row-num">
 					  </span>
                         <div class="controls">
                                 <div class="entry input-group">
 
-                                    <input class="form-control" name="landingPage" id="url" type="url" placeholder="http://www.google.com" />
+                                    <input class="input-field" name="landingPage" id="url" type="url" placeholder="http://www.google.com" />
                                 </div>
                         </div>
                     </div>
-                     <div class="col-lg-2 control-group" id="fields">
+                     <div class="control-group">
                         <div class="controls">
 
                                 <div class="entry input-group">
-                                    <input class="form-control" name="source" type="text" placeholder="AdTheorent" />
-                                </div>
-
-                        </div>
-                    </div>
-                      <div class="col-lg-2 control-group" id="fields">
-                        <div class="controls">
-
-                                <div class="entry input-group">
-                                    <input class="form-control" name="medium" type="text" placeholder="Display" />
+                                    <input class="input-field" name="source" type="text" placeholder="AdTheorent" />
                                 </div>
 
                         </div>
                     </div>
-                    <div class="col-lg-2 control-group" id="fields">
+                      <div class="control-group"">
                         <div class="controls">
 
                                 <div class="entry input-group">
-                                    <input class="form-control" name="content" type="text" placeholder="Promo25 mobile 400x600" />
+                                    <input class="input-field" name="medium" type="text" placeholder="Display" />
                                 </div>
 
                         </div>
                     </div>
-                    <div class="col-lg-2 control-group" id="fields">
+                    <div class="control-group">
                         <div class="controls">
 
                                 <div class="entry input-group">
-                                    <input class="form-control" name="term" type="text" placeholder="Big Savings" />
+                                    <input class="input-field" name="content" type="text" placeholder="Promo25 mobile 400x600" />
                                 </div>
 
                         </div>
                     </div>
-                    <div class="col-lg-2 control-group" id="fields">
+                    <div class="control-group">
                         <div class="controls">
 
                                 <div class="entry input-group">
-                                    <input class="form-control" name="campaign" type="text" placeholder="Awareness Q3" />
+                                    <input class="input-field" name="term" type="text" placeholder="Big Savings" />
+                                </div>
+
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+
+                                <div class="entry input-group">
+                                    <input class="input-field" name="campaign" type="text" placeholder="Awareness Q3" />
                                     <span class="input-group-btn">
                                         <button class="btn btn-success btn-add" type="button">
                                             <span class="glyphicon glyphicon-plus"></span>
@@ -231,7 +300,8 @@
                     </div>
 
             <div class="col-lg-12 text-center">
-                <button type="button" class="btn btn-primary">Download</button>
+                <button type="button" class="btn btn-primary" id="download">download</button>
+                <button type="button" class="btn btn-secondary" id ="save">save</button>
             </div>
 
             <!-- <div class="col-lg-12 text-left">
@@ -254,6 +324,7 @@
     </div>
     <!-- /.container -->
 
+
     <!-- jQuery Version 1.11.1 -->
     <script src="js/jquery.js"></script>
 
@@ -263,6 +334,8 @@
     <!-- Custom JavaScript -->
     <script src="js/script.js"></script>
 
+
+
     <!-- Xlsx JavaScript-->
     <script lang="javascript" src="js/xlsx.core.min.js"></script>
 
@@ -271,6 +344,9 @@
 
     <!-- FileSaver JavaScript-->
     <script type="text/javascript" src="js/FileSaver.js"></script>
+
+
+
 
 </body>
 
