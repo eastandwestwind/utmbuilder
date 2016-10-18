@@ -2,24 +2,32 @@ body {
 }
 
 #square{
-    width: 90px;
-    padding: 15px;
+    width: 60px;
+    padding: 10px;
     float: left;
 }
 
 .navbar {
-    height: 90px;
+    height: 60px;
 }
 
 .navbar-brand {
     font-size: 24px;
-    line-height: 60px;
-    height: 90px;
+    line-height: 30px;
+    height: 60px;
+}
+
+.navbar-header {
+    height: inherit;
+}
+
+.container {
+    height: inherit;
 }
 
 #nav-items {
     display: table-row;
-    height: 90px;
+    height: 60px;
 }
 
 #select-elements{
@@ -77,7 +85,6 @@ select#SelectFormat {
 }
 
 #user-info {
-    border: 1px solid #CCC;
     clear: both;
     margin: 0 auto;
     max-width: 400px;
@@ -97,6 +104,12 @@ select#SelectFormat {
 
 #sign-out,#delete-account {
     margin-top: 5px;
+    height: 20px;
+    font-size: 12px;
+}
+
+.firebaseui-idp-list{
+    margin: .5em 0;
 }
 
 #sign-in {
