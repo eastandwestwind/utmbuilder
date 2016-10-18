@@ -6,15 +6,18 @@ body {
 }
 
 select {
-    margin: 10px;
-    border: 1px solid #111;
     background: transparent;
+}
+select#SelectData {
+    margin: 10px;
     width: 150px;
     padding: 5px 5px 5px 5px;
     font-size: 16px;
     border: 1px solid #ccc;
     height: 34px;
-    /*-webkit-appearance: none;*/
+}
+select#SelectFormat {
+    height: 25px;
 }
 
 #cancelButton {
@@ -75,7 +78,7 @@ select {
 }
 
 #sign-in {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 #photo-container {
