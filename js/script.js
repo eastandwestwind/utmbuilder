@@ -232,6 +232,24 @@ function restoreRows(savedInput) {
     });
     $('.entryLines').first().remove();
 }
+
+// jquery modal popup dialogue
+function dangerous(message, yesCallback) {
+    $('#modal_dialog').html(message);
+    var dialog = $('#modal_dialog').dialog({
+        title: 'Delete?',
+        buttons: {
+            yes: function() {
+                $(this).dialog('close');
+                yesCallback();
+            },
+            no: function() {
+                $(this).dialog('close');
+            }
+        }
+    });
+}
+
 $(function()
 {
     $(document)
@@ -340,9 +358,16 @@ $(function()
         updateDropdown(currentUid,dataVal);
     })
     .on('click', '#delete', function(){
-        var dataVal = $('#SelectData').val();
-        firebase.database().ref('utm-set/' + currentUid + '/' + dataVal).remove();
-        updateDropdown(currentUid);
+        dangerous('Are you sure you want to delete this data set?',
+            function() {
+                var dataVal = $('#SelectData').val();
+                if (dataVal) {
+                    firebase.database().ref('utm-set/' + currentUid + '/' + dataVal).remove();
+                    updateDropdown(currentUid);
+                }
+            }
+        );
+
     })
     .on('change', 'input', function(){
 		$('#savedInput').val(JSON.stringify(getRawInputRows()));

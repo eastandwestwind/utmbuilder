@@ -108,3 +108,7 @@ body {
     top: 15%;
     left: 110%;
 }
+
+#modal_dialog{
+    display: none;
+}
