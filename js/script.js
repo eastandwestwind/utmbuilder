@@ -118,7 +118,11 @@ var initApp = function() {
     });
     document.getElementById('delete-account').addEventListener(
         'click', function() {
-            firebase.auth().currentUser.delete();
+            dangerous('Dude!! Are you sure you want to delete your account? You will lose all your saved UTM data if you click Delete.',
+                function() {
+                    firebase.auth().currentUser.delete();
+                }
+            );
         });
 };
 
@@ -238,15 +242,19 @@ function dangerous(message, yesCallback) {
     $('#modal_dialog').html(message);
     var dialog = $('#modal_dialog').dialog({
         title: 'Delete?',
-        buttons: {
-            yes: function() {
+        buttons: [
+            {text: "Cancel",
+            id: "cancelButton",
+            click: function() {
+                $(this).dialog('close');
+            }},
+            {text: "Delete",
+            id: "deleteButton",
+            click: function() {
                 $(this).dialog('close');
                 yesCallback();
-            },
-            no: function() {
-                $(this).dialog('close');
-            }
-        }
+            }}
+        ]
     });
 }
 
@@ -358,7 +366,7 @@ $(function()
         updateDropdown(currentUid,dataVal);
     })
     .on('click', '#delete', function(){
-        dangerous('Are you sure you want to delete this data set?',
+        dangerous('Oh snap! Are you sure you want to delete this data set?',
             function() {
                 var dataVal = $('#SelectData').val();
                 if (dataVal) {

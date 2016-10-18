@@ -5,6 +5,27 @@ body {
     height: 90px;
 }
 
+select {
+    margin: 10px;
+    border: 1px solid #111;
+    background: transparent;
+    width: 150px;
+    padding: 5px 5px 5px 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    height: 34px;
+    /*-webkit-appearance: none;*/
+}
+
+#cancelButton {
+    background-color: lightgrey;
+}
+
+#deleteButton {
+    background-color: red;
+    color: white;
+}
+
 .btn{
     padding: 2px 6px;
 }
@@ -112,3 +133,4 @@ body {
 #modal_dialog{
     display: none;
 }
+
