@@ -56,6 +56,8 @@
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
 
+    <!--font awesome js-->
+    <script src="https://use.fontawesome.com/83b2279e9d.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -90,14 +92,16 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="/img/square.svg" id="square">
+                <a href="http://foxylabs.io" id="square"><img src="/img/fox.png" id="logo"></a>
                 <div id="nav-items">
-                <a class="navbar-brand" href="#">Bulk UTM Builder</a>
-                <span id="select-elements">
-                    <select name="select data" id="SelectData">
-                    </select>
-                    <button class=btn" id="delete">delete</button>
-                </span>
+                    <span class="bar">|</span>
+                    <a class="navbar-brand" id="utm-name" href="#">UTM</a><a class="navbar-brand" id="fox-name" href="#">fox</a>
+                    <span id="select-elements">
+                        <select name="select data" id="SelectData">
+                        </select>
+                        <span class="fa fa-trash-o fa-lg" id="delete" title="delete data set"></span>
+                        <!--<button class="btn" id="delete">delete</button>-->
+                    </span>
                 </div>
             </div>
 
@@ -301,17 +305,6 @@
                 <button type="button" class="btn btn-primary" id="download">download</button>
                 <button type="button" class="btn btn-secondary" id ="save">save</button>
             </div>
-
-            <!-- <div class="col-lg-12 text-left">
-                <br>
-                <p class="h4">Parameters</p>
-                <p class="text-muted"><b>Landing Page:</b> URL of campaign landing page (eg. http://foxylabs.io)</p>
-                <p class="text-muted"><b>Source:</b> Identify specific source, such as advertiser or search engine. (eg. Boston Globe, Pinterest, March Newsletter)</p>
-                <p class="text-muted"><b>Medium:</b> Identify medium the url will be delivered in. (eg. email, cpc, display)</p>
-                <p class="text-muted"><b>Content:</b> Distinguish between ads with content, creative, or size (eg. textonly, rainbow, 160x600)</p>
-                <p class="text-muted"><b>Term:</b> Identify keywords for ad. Typically used for paid search. (eg. Swimsuits, Laptop)</p>
-                <p class="text-muted"><b>Campaign:</b> Name of the campaign. (eg. Summer Sale, Q3 Lead Gen)</p>
-            </div> -->
 
 
     </div>

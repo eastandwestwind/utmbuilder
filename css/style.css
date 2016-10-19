@@ -7,6 +7,22 @@ body {
     float: left;
 }
 
+#logo{
+    width: 40px;
+}
+
+#utm-name{
+    font-weight: 200;
+    padding: 15px 3px 15px 25px;
+    font-family: sans-serif;
+}
+
+#fox-name{
+    font-weight: 600;
+    color: orange;
+    font-family: sans-serif;
+}
+
 .navbar {
     height: 60px;
 }
@@ -15,6 +31,10 @@ body {
     font-size: 24px;
     line-height: 30px;
     height: 60px;
+}
+
+.navbar-default {
+    border-color: #dbdbdb;
 }
 
 .navbar-header {
@@ -35,6 +55,14 @@ body {
     vertical-align: middle;
 }
 
+.bar{
+    display: table-cell;
+    vertical-align: middle;
+    font-size: 30px;
+    font-weight: 100;
+    color: #cfcfcf;
+}
+
 select {
     background: transparent;
 }
@@ -45,6 +73,7 @@ select#SelectData {
     font-size: 16px;
     border: 1px solid #ccc;
     height: 34px;
+    color: grey;
 }
 select#SelectFormat {
     height: 25px;
@@ -57,6 +86,12 @@ select#SelectFormat {
 #deleteButton {
     background-color: red;
     color: white;
+}
+
+#delete{
+    cursor: pointer;
+    cursor: hand;
+    padding-left: 5px;
 }
 
 .btn{
