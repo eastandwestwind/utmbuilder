@@ -6,9 +6,19 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bulk UTM Builder - Simple Tool to Create Multiple UTMs</title>
-    <meta name="description" content="Use this tool to create UTM codes from parameters such as landing page, source, and campaign. Allows for easy duplication of lines. Download as csv or xlsx.">
-    <meta name="author" content="">
+    <title>UTM Fox - Bulk UTM Creation and Management Tool</title>
+    <meta name="description" content="UTMFox is a nifty tool used to create, download, and save UTM codes">
+    <meta name="author" content="FoxyLabs">
+
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WBKD5N"
+                      height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-WBKD5N');</script>
+    <!-- End Google Tag Manager -->
 
     <!-- Firebase scripts -->
     <script src="https://www.gstatic.com/firebasejs/3.4.1/firebase.js"></script>
@@ -66,15 +76,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <!-- Google Tag Manager -->
-    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WBKD5N"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WBKD5N');</script>
-    <!-- End Google Tag Manager -->
+
 </head>
 
 <body>
@@ -92,7 +94,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="http://foxylabs.io" id="square"><img src="img/fox.png" id="logo"></a>
+                <a href="http://foxylabs.io" id="square"><img src="img/fox.png" id="logo" alt="FoxyLabs Logo"></a>
                 <div id="nav-items">
                     <span class="bar">|</span>
                     <a class="navbar-brand" id="utm-name" href="#">UTM</a><a class="navbar-brand" id="fox-name" href="#">fox</a>
