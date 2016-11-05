@@ -254,12 +254,17 @@ function dangerous(message, yesCallback) {
 $(function()
 {
     $(document)
+    .on('click', '#newButton', function (e)
+    {
+        e.preventDefault();
+        $('.container-fluid').show();
+    })
     .on('click', '.btn-add', function (e)
     {
         e.preventDefault();
         console.log("button logic function")
         var currentEntry = $(this).closest('.entryLines');
-        $(currentEntry).after(currentEntry.clone());
+        $(currentEntry).after(currentEntry.clone().find("input").addClass('copiedLine'));
         console.log($(currentEntry).index()+1);
 
     })
@@ -349,6 +354,7 @@ $(function()
 
     })
     .on('change', '#SelectData', function(){
+        $('.container-fluid').show();
         var dataVal = $(this).val();
         firebase.database().ref('utm-set/' + currentUid + '/' + dataVal).once('value').then(function(snapshotList) {
             // snapshotList.forEach(function(usr){
@@ -365,6 +371,7 @@ $(function()
                 if (dataVal) {
                     firebase.database().ref('utm-set/' + currentUid + '/' + dataVal).remove();
                     updateDropdown(currentUid);
+                    $('.container-fluid')[0].style.display = 'none';
                 }
             }
         );

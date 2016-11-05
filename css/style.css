@@ -74,7 +74,13 @@ select#SelectData {
     border: 1px solid #ccc;
     height: 34px;
     color: grey;
+    background-color: white;
 }
+
+select#SelectData:focus {
+    outline: none;
+}
+
 select#SelectFormat {
     height: 25px;
 }
@@ -89,13 +95,28 @@ select#SelectFormat {
 }
 
 #delete{
-    cursor: pointer;
     cursor: hand;
     padding-left: 5px;
 }
+#newButton{
+    cursor: hand;
+    margin-left: 20px;
+    border-color: #FB8C00;
+    background-color: white;
+    color: #FB8C00;
+    padding: 5px 8px;
+}
+#newButton:hover{
+    border-color: #EE4E04;
+    color: #EE4E04;
+}
 
-.btn{
-    padding: 2px 6px;
+/*.btn{*/
+    /*padding: 2px 8px;*/
+/*}*/
+
+.btn:focus{
+    outline: none;
 }
 
 .row-num {
@@ -125,12 +146,13 @@ select#SelectFormat {
     max-width: 400px;
     width: 300px;
     padding: 5px;
-    text-align: left;
+    text-align: right;
 }
 
 #user-signed-in {
     float: right;
-    height: 100px;
+    height: 100%;
+    margin-right: 10px;
 }
 
 #user-signed-out{
@@ -173,12 +195,18 @@ select#SelectFormat {
         width: 40px;
     }
 }
+#download {
+    margin-right: 10px;
+    padding: 3px 8px;
+}
 
 #save {
     margin-top: 20px;
     background-color: transparent;
     border-color: deepskyblue;
     position: relative;
+    margin-left: 10px;
+    padding: 3px 8px;
 }
 
 #save:hover {
@@ -226,3 +254,43 @@ body:after{
     -webkit-transform:rotate(-45deg);
     transform:rotate(-45deg);
 }
+
+.container-fluid{
+    display: none;
+}
+
+.btn-add {
+    border-color: #449D44;
+    border-radius: 5px;
+    padding: 2px 8px;
+}
+
+.btn-remove {
+    border-color: #CD403C;
+    border-radius: 5px;
+    margin-left: 5px;
+    padding: 2px 8px;
+    /*fix margin and borders overridden by bootstrap*/
+}
+
+/*.btn-add:hover, .btn-remove:hover{*/
+    /*border-color: white;*/
+/*}*/
+
+/*.btn-add:focus, .btn-remove:focus{*/
+    /*outline: none;*/
+/*}*/
+/*.btn-add:active, .btn-remove:active{*/
+    /*outline: none;*/
+/*}*/
+
+.copiedLine {
+    /*-webkit-animation: glow 1s alternate;*/
+    box-shadow: 0 0 10px green;
+}
+
+/*@-webkit-keyframes glow {*/
+    /*to {*/
+        /*box-shadow: 0 0 10px green;*/
+    /*}*/
+/*}*/
