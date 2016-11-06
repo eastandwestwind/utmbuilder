@@ -264,7 +264,9 @@ $(function()
         e.preventDefault();
         console.log("button logic function")
         var currentEntry = $(this).closest('.entryLines');
-        $(currentEntry).after(currentEntry.clone().find("input").addClass('copiedLine'));
+        var clone = $(currentEntry).clone();
+        clone.find("input").addClass('copiedLine');
+        clone.insertAfter(currentEntry);
         console.log($(currentEntry).index()+1);
 
     })
