@@ -270,6 +270,10 @@ $(function()
         console.log($(currentEntry).index()+1);
 
     })
+    .on('focus','.copiedLine', function (e)
+    {
+        $(this).closest('.entryLines').find("input").removeClass('copiedLine');
+    })
     .on('click', '.btn-remove', function(e)
     {
         var nLines = $('.entryLines').length;
