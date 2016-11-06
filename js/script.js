@@ -258,6 +258,7 @@ $(function()
     {
         e.preventDefault();
         $('.container-fluid').show();
+        $('.container-fluid').find('.entryLines').filter(":gt(0)").remove();
     })
     .on('click', '.btn-add', function (e)
     {
