@@ -75,6 +75,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     user ? handleSignedInUser(user) : handleSignedOutUser();
 });
 
+
 // display saved data in dropdown every time new data is saved or new user logged in
 var updateDropdown = function(userId, filename){
     var selectData = $('#SelectData');
@@ -258,7 +259,19 @@ $(function()
     {
         e.preventDefault();
         $('.container-fluid').show();
+        // remove all rows but first
         $('.container-fluid').find('.entryLines').filter(":gt(0)").remove();
+        // reset dropdown
+        $('#delete').hide();
+        var opt = $('<option>');
+        opt.text('select data...');
+        opt.val('');
+        $('#SelectData').prepend(opt).val('');
+        // clear name of file and all input fields
+        $('input').each(function(){
+            $(this).val('');
+        })
+
     })
     .on('click', '.btn-add', function (e)
     {
@@ -266,6 +279,7 @@ $(function()
         console.log("button logic function")
         var currentEntry = $(this).closest('.entryLines');
         var clone = $(currentEntry).clone();
+        // allows for highlighting
         clone.find("input").addClass('copiedLine');
         clone.insertAfter(currentEntry);
         console.log($(currentEntry).index()+1);
